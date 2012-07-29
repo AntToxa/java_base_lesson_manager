@@ -165,6 +165,7 @@ public class BaseManager {
 		if(sc.hasNextInt()){
 			  return sc.nextInt(); 
 		  }
+		sc.nextLine();
 		return 0;
 	}
 
