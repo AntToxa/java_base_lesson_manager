@@ -17,10 +17,10 @@ public class Config {
     public static final String DIR_LESSONS = "";
     
     /**
-     * Директория с дз 
+     * Путь от директории с уроками до папок домашними заданиями 
      * {lesson} - заменяется на папку с текущим уроком
      */
-    public static final String DIR_DZ = "{lesson}src/julyGroup/{lesson}your_name/";
+    public static final String PATH_DZ = "{lesson}src/julyGroup/{lesson}anton_chesnokov/";
     
    
     

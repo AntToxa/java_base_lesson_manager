@@ -27,11 +27,30 @@ public class Manager {
 	 */
     public static int numberLesson;
     
+    /**
+     * Список скопированных файлов
+     */
+    public static String[] filesCopyList;
+    
+    /**
+     * 
+     * @param args
+     */
+    
+    public static int filesCopyIndex = 0;
+    
 	public static void main(String[] args) {
          Manager objManager = new Manager();
+         
          objManager.inputParams();
          if(objManager.copyLessons()){
-        	 System.out.println("Файлы скопированны!");
+        	 if(filesCopyList.length>0){
+        		 System.out.println("Скопированны следующие файлы:");
+        		 for(String f:filesCopyList){
+        			 System.out.println(" "+f);
+        		 }
+        	 }
+        	 System.out.println("Копирование завершенно!");
          }else{
         	 System.out.println("При копировании файлов произошла ошибка!");
          }
@@ -58,7 +77,7 @@ public class Manager {
 		if(!objDir.isDirectory()){
 			objDir.mkdirs();
 		}
-		String dirCurrentLesson = Config.DIR_LESSONS+Config.DIR_DZ.replace("{lesson}", currentLesson);
+		String dirCurrentLesson = Config.DIR_LESSONS+Config.PATH_DZ.replace("{lesson}", currentLesson);
 		objDir = new File(dirCurrentLesson);
 		if(!objDir.isDirectory()){
 			System.out.println("Произошла ошибка: "+dirCurrentLesson+" не существует!");
@@ -95,32 +114,52 @@ public class Manager {
 			if(testDz(cd)){
 				String dirCopyDropBox = dirDropboxLesson+cd+"/ver"+verLesson+"/";
 				File objDropBox = new File(dirCopyDropBox);
-				if(flagCopy<2){
-				if(objDropBox.isDirectory()){
+				if(objDropBox.isDirectory()&&flagCopy<2){
 					System.out.println("Директория "+dirCopyDropBox+" уже существует,");
 					System.out.println("все хранящиеся файлы в ней будут перезаписаны,");
 					System.out.println("вы уверены что хотите продолжить?");
 					System.out.println("0 - нет, 1 - да, 2 - да для всех, 3 - отменить копирование.");
 					flagCopy = getNextInt();
 				}
+				
+				
+				if(!objDropBox.isDirectory()){
+					objDropBox.mkdirs();
+				}else{
+					if(flagCopy==3){
+						break;
+					}else if(flagCopy == 0){
+						continue;
+					}	
 				}
-				if(flagCopy==3){
-					break;
-				}else if(flagCopy == 0){
-					continue;
-				}
-				objDropBox.mkdirs();
+				
 				String dirLessonSc = dirCurrentLesson+cd;
 				File objDirLessonSc = new File(dirLessonSc);
+				//System.out.println(dirLessonSc);
+				
 				File[] listFilesSc = objDirLessonSc.listFiles();
 				for(File f: listFilesSc){
 					String fis = f.getPath();
 					String fos = dirCopyDropBox+f.getName();
+					if(filesCopyIndex>0){
+					  String[] buffArray = new String[filesCopyIndex];
+					  buffArray = filesCopyList;
+					  filesCopyList =  new String[filesCopyIndex+1];
+					  for(int i=0;i<buffArray.length;i++){
+					     filesCopyList[i] = buffArray[i];
+					  }
+					}else{
+						filesCopyList =  new String[filesCopyIndex+1];
+					}
+					//System.out.println(l);
+					filesCopyList[filesCopyIndex] = fos;
+					filesCopyIndex++;
 					try {
 						fileCopy(fis, fos);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+					
 				}
 				
 			}
