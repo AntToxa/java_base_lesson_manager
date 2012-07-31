@@ -1,8 +1,5 @@
 package progschool.core;
 import java.io.*;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import progschool.config.*;
 
 /**
@@ -16,8 +13,6 @@ import progschool.config.*;
  */
 public class ManagerToDropBox extends BaseManager{
 	
-    
-    
 	public static void main(String[] args) {
 		System.out.println("Копирование файлов из директории "+Config.DIR_LESSONS+" в директорию "+Config.DIR_DROPBOX);
          ManagerToDropBox objManager = new ManagerToDropBox();

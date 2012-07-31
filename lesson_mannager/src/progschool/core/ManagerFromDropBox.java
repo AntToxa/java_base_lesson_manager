@@ -1,8 +1,5 @@
 package progschool.core;
 import java.io.*;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import progschool.config.*;
 
 /**
