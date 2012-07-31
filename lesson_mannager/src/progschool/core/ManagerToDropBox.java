@@ -16,7 +16,6 @@ public class ManagerToDropBox extends BaseManager{
 	public static void main(String[] args) {
 		System.out.println("Копирование файлов из директории "+Config.DIR_LESSONS+" в директорию "+Config.DIR_DROPBOX);
          ManagerToDropBox objManager = new ManagerToDropBox();
-         
          objManager.inputParams();
          if(objManager.copyLessons()){
         	 if(filesCopyList.length>0){
@@ -30,10 +29,6 @@ public class ManagerToDropBox extends BaseManager{
         	 System.out.println("При копировании файлов произошла ошибка!");
          }
 	}
-	
-	
-	
-	
 		
 	/**
 	 * Копирует дз из рабочей папки в dropbox
@@ -42,7 +37,6 @@ public class ManagerToDropBox extends BaseManager{
 	 */
 	public void copyDz(String dirCurrentLesson, String dirDropboxLesson){
 		File objProject = new File(dirCurrentLesson);
-		
 		String[] listDirs = objProject.list();
 		int flagCopy = 0;
 		for(String cd : listDirs){
@@ -57,7 +51,6 @@ public class ManagerToDropBox extends BaseManager{
 					flagCopy = getNextInt();
 				}
 				
-				
 				if(!objDropBox.isDirectory()){
 					objDropBox.mkdirs();
 				}else{
@@ -70,7 +63,6 @@ public class ManagerToDropBox extends BaseManager{
 				
 				String dirLessonSc = dirCurrentLesson+cd;
 				File objDirLessonSc = new File(dirLessonSc);
-				//System.out.println(dirLessonSc);
 				
 				File[] listFilesSc = objDirLessonSc.listFiles();
 				for(File f: listFilesSc){
@@ -86,7 +78,6 @@ public class ManagerToDropBox extends BaseManager{
 					}else{
 						filesCopyList =  new String[filesCopyIndex+1];
 					}
-					//System.out.println(l);
 					filesCopyList[filesCopyIndex] = fos;
 					filesCopyIndex++;
 					try {
@@ -100,6 +91,5 @@ public class ManagerToDropBox extends BaseManager{
 			}
 		}
 	}
-	
 	
 }

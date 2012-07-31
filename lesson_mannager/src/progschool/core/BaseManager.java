@@ -9,7 +9,6 @@ import progschool.config.*;
  * Менеджер для уроков курса "JAVA. Базовый курс"
  * Содержит основные методы
  * 
- * 
  * @version 1.0
  * @author AnToxa
  *
@@ -32,21 +31,14 @@ public class BaseManager {
     public static String[] filesCopyList;
     
     /**
-     * 
+     * Индекс скопированного файла
      * @param args
      */
-    
     public static int filesCopyIndex = 0;
-    
-	
-	
+   
 	public boolean sendMail(){
-		
 		return true;
-		
 	}
-	
-	
 	
 	/**
 	 * Проверяет название папки соответсвует регулярному выражению dz[0-9]+
@@ -59,8 +51,6 @@ public class BaseManager {
 		boolean b = m.matches();
 		return b;
     }
-	
-	
 	
 	/**
 	 * Копирует содержимое одного файла в другой

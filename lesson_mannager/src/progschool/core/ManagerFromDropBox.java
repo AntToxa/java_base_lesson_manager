@@ -13,27 +13,23 @@ import progschool.config.*;
  */
 public class ManagerFromDropBox extends BaseManager{
 	
-    
-    
 	public static void main(String[] args) {
 		System.out.println("Копирование файлов из директории "+Config.DIR_DROPBOX+" в директорию "+Config.DIR_LESSONS);
-         ManagerFromDropBox objManager = new ManagerFromDropBox();
+        ManagerFromDropBox objManager = new ManagerFromDropBox();
          
-         objManager.inputParams();
-         if(objManager.copyLessons()){
-        	 if(filesCopyList.length>0){
-        		 System.out.println("Скопированны следующие файлы:");
-        		 for(String f:filesCopyList){
-        			 System.out.println(" "+f);
-        		 }
+        objManager.inputParams();
+        if(objManager.copyLessons()){
+          if(filesCopyList.length>0){
+        	 System.out.println("Скопированны следующие файлы:");
+        	    for(String f:filesCopyList){
+                   System.out.println(" "+f);
+        	    }
         	 }
         	 System.out.println("Копирование завершенно!");
          }else{
         	 System.out.println("При копировании файлов произошла ошибка!");
          }
 	}
-	
-	
 		
 	/**
 	 * Копирует дз из папки на dropbox в рабочую область
@@ -87,6 +83,5 @@ public class ManagerFromDropBox extends BaseManager{
 			}
 		}
 	}
-	
 	
 }
