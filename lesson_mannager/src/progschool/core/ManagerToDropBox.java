@@ -17,10 +17,10 @@ public class ManagerToDropBox extends BaseManager{
 		System.out.println("Копирование файлов из директории "+Config.DIR_LESSONS+" в директорию "+Config.DIR_DROPBOX);
          ManagerToDropBox objManager = new ManagerToDropBox();
          objManager.inputParams();
-         if(objManager.copyLessons()){
-        	 if(filesCopyList.length>0){
+         if(objManager.copyLessons()) {
+        	 if (filesCopyList.length>0) {
         		 System.out.println("Скопированны следующие файлы:");
-        		 for(String f:filesCopyList){
+        		 for (String f:filesCopyList) {
         			 System.out.println(" "+f);
         		 }
         	 }
@@ -35,11 +35,11 @@ public class ManagerToDropBox extends BaseManager{
 	 * @param dirCurrentLesson - папка с уроками
 	 * @param dirDropboxLesson - папка с уроками на dropbox
 	 */
-	public void copyDz(String dirCurrentLesson, String dirDropboxLesson){
+	public void copyDz(String dirCurrentLesson, String dirDropboxLesson) {
 		File objProject = new File(dirCurrentLesson);
 		String[] listDirs = objProject.list();
 		int flagCopy = 0;
-		for(String cd : listDirs){
+		for(String cd : listDirs) {
 			if(testDz(cd)){
 				String dirCopyDropBox = dirDropboxLesson+cd+"/ver"+verLesson+"/";
 				File objDropBox = new File(dirCopyDropBox);
@@ -51,12 +51,12 @@ public class ManagerToDropBox extends BaseManager{
 					flagCopy = getNextInt();
 				}
 				
-				if(!objDropBox.isDirectory()){
+				if (!objDropBox.isDirectory()) {
 					objDropBox.mkdirs();
-				}else{
-					if(flagCopy==3){
+				} else {
+					if (flagCopy==3) {
 						break;
-					}else if(flagCopy == 0){
+					} else if(flagCopy == 0) {
 						continue;
 					}	
 				}
@@ -65,17 +65,17 @@ public class ManagerToDropBox extends BaseManager{
 				File objDirLessonSc = new File(dirLessonSc);
 				
 				File[] listFilesSc = objDirLessonSc.listFiles();
-				for(File f: listFilesSc){
+				for (File f: listFilesSc) {
 					String fis = f.getPath();
 					String fos = dirCopyDropBox+f.getName();
-					if(filesCopyIndex>0){
+					if (filesCopyIndex>0) {
 					  String[] buffArray = new String[filesCopyIndex];
 					  buffArray = filesCopyList;
 					  filesCopyList =  new String[filesCopyIndex+1];
-					  for(int i=0;i<buffArray.length;i++){
+					  for (int i=0;i<buffArray.length;i++) {
 					     filesCopyList[i] = buffArray[i];
 					  }
-					}else{
+					} else {
 						filesCopyList =  new String[filesCopyIndex+1];
 					}
 					filesCopyList[filesCopyIndex] = fos;
