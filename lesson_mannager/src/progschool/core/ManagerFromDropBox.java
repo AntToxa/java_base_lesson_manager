@@ -46,13 +46,16 @@ public class ManagerFromDropBox extends BaseManager{
 			if(testDz(cd)){
 				String dirLessonSc = dirCurrentLesson+cd;
 				File objDirLessonSc = new File(dirLessonSc);
-				
+				String dirCopyDropBox = dirDropboxLesson+cd+"/ver"+verLesson+"/";
+				File objDropBox = new File(dirCopyDropBox);
+				if(!objDropBox.isDirectory()){
+					continue;
+				}
+					
 				if(!objDirLessonSc.isDirectory()){
 					objDirLessonSc.mkdirs();
 				}
 				
-				String dirCopyDropBox = dirDropboxLesson+cd+"/ver"+verLesson+"/";
-				File objDropBox = new File(dirCopyDropBox);
 				
 				File[] listFilesDb = objDropBox.listFiles();
 				for(File f: listFilesDb){
